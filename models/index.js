@@ -1,6 +1,6 @@
-const AppCollection = require('./application')
-// const User = require('./user');
-// const Tag = require('./Tag');
+const Thoughts = require('./thoughts')
+const User = require('./User');
+const Reaction = require('./reaction');
 // const Application = require('./Application');
 
-module.exports = { AppCollection };
+module.exports = { Thoughts, User, Reaction };
