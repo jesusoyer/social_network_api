@@ -1,8 +1,10 @@
 
-const mongoose = require('mongoose');
+const {Schema, model} = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
+console.log("user page hit")
 
-const userSchema = new mongoose.Schema({
+
+const userSchema = new Schema({
     username: {
         type:String, 
         require: true,
@@ -16,27 +18,32 @@ const userSchema = new mongoose.Schema({
     },
     thoughts:[{
         type: Schema.Types.ObjectId,
-        ref: 'Thought'
+        ref: 'Thoughts'
     }],
     friends:[{
         type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-],
+        ref: 'user'
+    }],
 },
 {
     toJSON: {
         virtuals: true,
-}
+        getters:true,
+},
+    id: false,
     
 });
 
 userSchema.virtual('friendCount').get(function (){
     return this.friends.length;
 })
-const User = mongoose.model('user', userSchema)
+const User = model('user', userSchema)
 
 const handleError = (err) => console.error(err);
+
+
+
+
 
 
 
