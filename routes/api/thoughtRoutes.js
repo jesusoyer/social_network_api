@@ -12,21 +12,19 @@ const {
     removeReaction,
   } = require('../../controllers/appController');
   
-  // /api/applications
+  // /api/thoughts
   router.route('/').get(getThought).post(createThought);
   
-  // /api/applications/:applicationId
-  router
-    .route('/:thoughtId')
-    .get(getSingleThought)
-    .put(updateThought)
-    .delete(deleteThought);
+  // /api/reactions/:thoughtId
+  router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(deleteThought);
   
-  // /api/applications/:applicationId/tags
+  // /api/apps/:thoughtId/reaction
   router.route('/:thoughtId/reaction').post(addReaction);
   
-  // /api/applications/:applicationId/tags/:tagId
+  // /api/apps/:thoughtId/tags/:reactionId
   router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction);
+
+
 
 
 module.exports = router;
